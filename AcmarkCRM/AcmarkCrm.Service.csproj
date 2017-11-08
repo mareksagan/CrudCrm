@@ -7,8 +7,8 @@
     <ProjectGuid>{1B38AA69-27B2-44B4-B1DF-3E1CCD90971D}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AcmarkCRM</RootNamespace>
-    <AssemblyName>AcmarkCRM</AssemblyName>
+    <RootNamespace>AcmarkCrm</RootNamespace>
+    <AssemblyName>AcmarkCrmService</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -23,7 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\AcmarkCRM.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\AcmarkCrmService.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -56,8 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddEntityRecord.cs" />
+    <Compile Include="DeleteDuplicates.cs" />
+    <Compile Include="ConnectToCrm.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CsvManipulator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

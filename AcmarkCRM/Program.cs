@@ -1,56 +1,43 @@
-﻿using Microsoft.Xrm.Client.Services;
+﻿using System;
 using Microsoft.Xrm.Sdk;
-using System;
+using Microsoft.Xrm.Sdk.Client;
 
-namespace AcmarkCRM
+namespace AcmarkCrm.Service
 {
-    class Program
+    partial class Program
     {
         static void Main(string[] args)
         {
-            IOrganizationService service = new OrganizationService("connection");
-
-            Entity contact = new Entity("contact")
-            {
-                ["firstname"] = "Suresh",
-                ["lastname"] = "Maurya"
-            };
-
-            Console.WriteLine("Creating Contact");
-
-            Guid contactId = new Guid();
-
+            IOrganizationService crmService = null;
+            
             try
             {
-                contactId = service.Create(contact);
+                 crmService = ConnectToCrm(args[0], args[1], args[2]);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
 
-            Console.WriteLine("Contact with guid=" + contactId + " created");
+            var invalidDocumentEntity = CreateNewEntity();
 
-            Console.WriteLine("updating Record");
+            OrganizationServiceContext crmServiceContext = null;
+            
+            if (crmService != null)
+            {
+                AddEntityRecord(crmService, 00000008, 5426, TypeOfInvalidatedDocument.Green, "17.3.2010", invalidDocumentEntity);
 
-            Entity contactToUpdate = new Entity("contact")
-            {
-                ["contactid"] = contactId,
-                ["firstname"] = "Suresh-updated",
-                ["lastname"] = "Maurya-Updated"
-            };
-            try
-            {
-                service.Update(contactToUpdate);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
+                //run thread at 3:00 each night
+                //linq the csv and weed out records older than 1 day and then add them to the database
+                // if the csv file modified date is not equal to csvLastChangeDate, then update the file, the database and change the date
+
+                crmServiceContext = new OrganizationServiceContext(crmService);
             }
 
-            Console.WriteLine("Contact updated");
+            DeleteDuplicates(crmServiceContext);
 
             Console.ReadKey();
         }
+
     }
 }
