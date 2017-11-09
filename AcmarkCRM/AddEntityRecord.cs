@@ -41,7 +41,7 @@ namespace AcmarkCrm.Service
             }
 
 
-            Console.WriteLine($"New entity record created with GUID {id}");
+            Console.WriteLine($"RECORD CREATED - Guid: {id}");
         }
     }
 }
