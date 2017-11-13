@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 
@@ -21,7 +22,6 @@ namespace AcmarkCrm.Service
                     new QueryExpression { EntityName = "acm_listinvaliddocument" }
                 }
             };
-
 
             crmService.Execute(request);
         }
