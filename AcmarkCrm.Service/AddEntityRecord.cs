@@ -18,14 +18,14 @@ namespace AcmarkCrm.Service
             return new Entity("acm_listinvaliddocument");
         }
 
-        private static void AddEntityRecord(IOrganizationService crmService, int documentNumber, int batch, TypeOfInvalidatedDocument typeOfDocument, string date, Entity entity)
+        private static void AddEntityRecord(IOrganizationService crmService, string documentNumber, string batch, TypeOfInvalidatedDocument typeOfDocument, string date, Entity entity)
         {
             OptionSetValue documentType = new OptionSetValue {Value = (int) typeOfDocument};
 
             Entity entityRecord = entity;
 
-            entityRecord.Attributes["acm_documentnumber"] = documentNumber.ToString("D8");
-            entityRecord.Attributes["acm_batch"] = batch.ToString("D4");
+            entityRecord.Attributes["acm_documentnumber"] = documentNumber;
+            entityRecord.Attributes["acm_batch"] = batch;
             entityRecord.Attributes["acm_documenttype"] = documentType;
             entityRecord.Attributes["acm_invalidationdate"] = DateTime.Parse(date);
 

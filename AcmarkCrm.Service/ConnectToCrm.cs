@@ -8,6 +8,8 @@ namespace AcmarkCrm.Service
 {
     partial class Program
     {
+
+        //move to class CrmConnector - factory method/singleton class
         private static IOrganizationService ConnectToCrm(string url, string login, string password)
         {
             Uri oUri = new Uri(url);
