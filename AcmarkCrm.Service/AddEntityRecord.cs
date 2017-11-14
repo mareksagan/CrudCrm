@@ -18,7 +18,7 @@ namespace AcmarkCrm.Service
             return new Entity("acm_listinvaliddocument");
         }
 
-        private static void AddEntityRecord(IOrganizationService crmService, string documentNumber, string batch, TypeOfInvalidatedDocument typeOfDocument, string date, Entity entity)
+        private static void AddEntityRecord(IOrganizationService crmService, string documentNumber, string batch, TypeOfInvalidatedDocument typeOfDocument, DateTime date, Entity entity)
         {
             OptionSetValue documentType = new OptionSetValue {Value = (int) typeOfDocument};
 
@@ -27,7 +27,7 @@ namespace AcmarkCrm.Service
             entityRecord.Attributes["acm_documentnumber"] = documentNumber;
             entityRecord.Attributes["acm_batch"] = batch;
             entityRecord.Attributes["acm_documenttype"] = documentType;
-            entityRecord.Attributes["acm_invalidationdate"] = DateTime.Parse(date);
+            entityRecord.Attributes["acm_invalidationdate"] = date;
 
             Guid id = Guid.Empty;
 

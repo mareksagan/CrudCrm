@@ -84,7 +84,9 @@
     <Compile Include="DeleteEntityRecord.cs" />
     <Compile Include="ConnectToCrm.cs" />
     <Compile Include="EntityManipulator.cs" />
-    <Compile Include="InvalidatedDocumentWithoutSeries.cs" />
+    <Compile Include="IInvalidatedDocument.cs" />
+    <Compile Include="InvalidatedDocument.cs" />
+    <Compile Include="InvalidatedDocumentWithSeries.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

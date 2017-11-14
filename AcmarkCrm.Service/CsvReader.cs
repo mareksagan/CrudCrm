@@ -21,8 +21,6 @@ namespace AcmarkCrm.Service
         //use Verbose with it
         public bool Logging { get; set; }
 
-        private string _downloadedFile = "downloaded_file";
-
         private void DownloadAndDeleteFile(string uri, string directory, string filepath)
         {
             Downloader.DownloadFile(new Uri(uri), filepath);
@@ -40,10 +38,10 @@ namespace AcmarkCrm.Service
                 Directory.CreateDirectory(Path);
             }
 
-            DownloadAndDeleteFile("http://aplikace.mvcr.cz/neplatne-doklady/ViewFile.aspx?typ_dokladu=0", Path, Path + _downloadedFile + ArchiveExtension);
-            DownloadAndDeleteFile("http://aplikace.mvcr.cz/neplatne-doklady/ViewFile.aspx?typ_dokladu=1", Path, Path + _downloadedFile + ArchiveExtension);
-            DownloadAndDeleteFile("http://aplikace.mvcr.cz/neplatne-doklady/ViewFile.aspx?typ_dokladu=2", Path, Path + _downloadedFile + ArchiveExtension);
-            DownloadAndDeleteFile("http://aplikace.mvcr.cz/neplatne-doklady/ViewFile.aspx?typ_dokladu=3", Path, Path + _downloadedFile + ArchiveExtension);
+            DownloadAndDeleteFile("http://aplikace.mvcr.cz/neplatne-doklady/ViewFile.aspx?typ_dokladu=0", Path, Path + DownloadedFile + ArchiveExtension);
+            DownloadAndDeleteFile("http://aplikace.mvcr.cz/neplatne-doklady/ViewFile.aspx?typ_dokladu=1", Path, Path + DownloadedFile + ArchiveExtension);
+            DownloadAndDeleteFile("http://aplikace.mvcr.cz/neplatne-doklady/ViewFile.aspx?typ_dokladu=2", Path, Path + DownloadedFile + ArchiveExtension);
+            DownloadAndDeleteFile("http://aplikace.mvcr.cz/neplatne-doklady/ViewFile.aspx?typ_dokladu=3", Path, Path + DownloadedFile + ArchiveExtension);
         }
 
         public void DownloadUpdateCsvFiles()
@@ -53,10 +51,10 @@ namespace AcmarkCrm.Service
                 Directory.CreateDirectory(Path);
             }
 
-            DownloadAndDeleteFile("http://aplikace.mvcr.cz/neplatne-doklady/ViewFile.aspx?typ_dokladu=0&rozdil=1", Path, Path + _downloadedFile + ArchiveExtension);
-            DownloadAndDeleteFile("http://aplikace.mvcr.cz/neplatne-doklady/ViewFile.aspx?typ_dokladu=1&rozdil=1", Path, Path + _downloadedFile + ArchiveExtension);
-            DownloadAndDeleteFile("http://aplikace.mvcr.cz/neplatne-doklady/ViewFile.aspx?typ_dokladu=2&rozdil=1", Path, Path + _downloadedFile + ArchiveExtension);
-            DownloadAndDeleteFile("http://aplikace.mvcr.cz/neplatne-doklady/ViewFile.aspx?typ_dokladu=3&rozdil=1", Path, Path + _downloadedFile + ArchiveExtension);
+            DownloadAndDeleteFile("http://aplikace.mvcr.cz/neplatne-doklady/ViewFile.aspx?typ_dokladu=0&rozdil=1", Path, Path + DownloadedFile + ArchiveExtension);
+            DownloadAndDeleteFile("http://aplikace.mvcr.cz/neplatne-doklady/ViewFile.aspx?typ_dokladu=1&rozdil=1", Path, Path + DownloadedFile + ArchiveExtension);
+            DownloadAndDeleteFile("http://aplikace.mvcr.cz/neplatne-doklady/ViewFile.aspx?typ_dokladu=2&rozdil=1", Path, Path + DownloadedFile + ArchiveExtension);
+            DownloadAndDeleteFile("http://aplikace.mvcr.cz/neplatne-doklady/ViewFile.aspx?typ_dokladu=3&rozdil=1", Path, Path + DownloadedFile + ArchiveExtension);
         }
 
         public CsvReader()
@@ -72,6 +70,7 @@ namespace AcmarkCrm.Service
                 EnforceCsvColumnAttribute = true
             };
             InputFileExtension = ".csv";
+            DownloadedFile = "downloaded_file";
 
         }
 
@@ -89,29 +88,17 @@ namespace AcmarkCrm.Service
 
         public static string ExtractPath { get; set; }
 
-        public string DownloadedFile
-        {
-            get
-            {
-                return _downloadedFile;
-            }
+        public string DownloadedFile { get; set; }
 
-            set
-            {
-                _downloadedFile = value;
-            }
-        }
-
-        public IEnumerable<InvalidatedDocumentWithoutSeries> ReadCsv(string fileName)
+        public IEnumerable<InvalidatedDocument> ReadCsv(string fileName)
         {
-            IEnumerable<InvalidatedDocumentWithoutSeries> products =
-    InputFileContext.Read<InvalidatedDocumentWithoutSeries>(Path + fileName + InputFileExtension, InputFileDescription);
+            IEnumerable<InvalidatedDocument> products =
+    InputFileContext.Read<InvalidatedDocument>(Path + fileName + InputFileExtension, InputFileDescription);
             return products;
         }
         /// <summary>
         /// 
         /// </summary>
-        /// <returns></returns>
         public string GetPath()
         {
             return Path;

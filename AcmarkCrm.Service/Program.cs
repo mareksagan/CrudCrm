@@ -1,6 +1,7 @@
 ﻿using System;
 using CommandLine;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Messages;
 
 namespace AcmarkCrm.Service
 {
@@ -77,10 +78,14 @@ namespace AcmarkCrm.Service
 
                     var collection = csvrdr.ReadCsv("op_vse");
 
+                    //new ExecuteMultipleRequest
+
+                    //new CreateRequest
+
                     foreach (var item in collection)
                     {
-                        AddEntityRecord(crmService, item.DocumentNumber.ToString(), null, TypeOfInvalidatedDocument.WithoutSeries, date: item.InvalidationDate.ToString(),
-                            entity: invalidDocumentEntity);
+                        AddEntityRecord(crmService, item.DocumentId, null, TypeOfInvalidatedDocument.WithoutSeries, item.InvalidationDate,
+                            invalidDocumentEntity);
                     }
 
                 }
