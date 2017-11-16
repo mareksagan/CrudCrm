@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xrm.Sdk;
 
-namespace AcmarkCrm.Service
+namespace CRUDCrm.Service
 {
     partial class Program
     {

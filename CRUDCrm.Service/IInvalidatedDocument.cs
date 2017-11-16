@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AcmarkCrm.Service
+namespace CRUDCrm.Service
 {
     /// <summary>
     /// 

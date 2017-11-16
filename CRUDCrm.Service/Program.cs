@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Reflection;
 using CommandLine;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
+using Microsoft.Xrm.Client;
 
-namespace AcmarkCrm.Service
+namespace CRUDCrm.Service
 {
     partial class Program
     {
@@ -67,10 +69,10 @@ namespace AcmarkCrm.Service
                 if (crmService != null)
                 {
 
-                    //AddEntityRecord(crmService, "00000008", "5426", TypeOfInvalidatedDocument.Green, "17.3.2010",
-                    //    invalidDocumentEntity);
-                    //AddEntityRecord(crmService, "00000009", "5826", TypeOfInvalidatedDocument.WithSeries, "17.3.2014",
-                    //    invalidDocumentEntity);
+                    AddEntityRecord(crmService, "00000008", "5426", TypeOfInvalidatedDocument.Green, DateTime.Parse("17.3.2010"),
+                        invalidDocumentEntity);
+                    AddEntityRecord(crmService, "00000009", "5826", TypeOfInvalidatedDocument.WithSeries, DateTime.Parse("17.3.2014"),
+                        invalidDocumentEntity);
 
                     CsvReader csvrdr = new CsvReader();
 
@@ -78,19 +80,50 @@ namespace AcmarkCrm.Service
 
                     var collection = csvrdr.ReadCsv("op_vse");
 
-                    //new ExecuteMultipleRequest
+                    //var requestWithResults = new ExecuteMultipleRequest()
+                    //{
+                    //    // Assign settings that define execution behavior: continue on error, return responses. 
+                    //    Settings = new ExecuteMultipleSettings()
+                    //    {
+                    //        ContinueOnError = false,
+                    //        ReturnResponses = true
+                    //    },
+                    //    // Create an empty organization request collection.
+                    //    Requests = new OrganizationRequestCollection()
+                    //};
 
-                    //new CreateRequest
+                    //EntityCollection entityCollection = new EntityCollection()
+                    //{
+                    //    EntityName = "acm_listinvaliddocument"
+                    //};
 
-                    foreach (var item in collection)
-                    {
-                        AddEntityRecord(crmService, item.DocumentId, null, TypeOfInvalidatedDocument.WithoutSeries, item.InvalidationDate,
-                            invalidDocumentEntity);
-                    }
+                    //foreach (var item in collection)
+                    //{
+                    //    if (item.DocumentId.)
+                    //    {
+                    //        Entity tempEntity = new Entity("acm_listinvaliddocument");
+                    //    tempEntity.Attributes["acm_documentnumber"] = item.DocumentId;
+                    //    tempEntity.Attributes["acm_documenttype"] = TypeOfInvalidatedDocument.WithoutSeries;
+                    //    tempEntity.Attributes["acm_invalidationdate"] = item.InvalidationDate;
+
+                    //    entityCollection.Entities.Add(tempEntity);
+                    //    }
+                        
+                    //    Console.WriteLine(item.DocumentId);
+                    //}
+
+                    //foreach (var entity in entityCollection.Entities)
+                    //{
+                    //    CreateRequest createRequest = new CreateRequest { Target = entity };
+                    //    requestWithResults.Requests.Add(createRequest);
+                    //}
+
+                    //// Execute all the requests in the request collection using a single web method call.
+                    //crmService.Execute(requestWithResults);
 
                 }
 
-                DeleteAllEntityRecords(crmService);
+                //DeleteAllEntityRecords(crmService);
 
                 Console.ReadKey();
             }

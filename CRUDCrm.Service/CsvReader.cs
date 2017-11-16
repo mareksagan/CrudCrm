@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
+using AcmarkCrm;
 using LINQtoCSV;
 
-namespace AcmarkCrm.Service
+namespace CRUDCrm.Service
 {
     sealed class CsvReader
     {
@@ -59,7 +60,7 @@ namespace AcmarkCrm.Service
 
         public CsvReader()
         {
-            Path = AppDomain.CurrentDomain.BaseDirectory + @"\csv\";
+            Path = AppDomain.CurrentDomain.BaseDirectory + @"csv\";
             Downloader = new WebClient();
             ArchiveExtension = ".zip";
             InputFileContext = new CsvContext();

@@ -1,5 +1,5 @@
 ﻿using System;
-using AcmarkCrm.Service;
+using CRUDCrm.Service;
 using LINQtoCSV;
 
 namespace AcmarkCrm
@@ -14,7 +14,7 @@ namespace AcmarkCrm
         public string DocumentId { get; set; }
 
         /// <inheritdoc />
-        [CsvColumn(FieldIndex = 2, CanBeNull = false, OutputFormat = "dd.mm.yyyy")]
+        [CsvColumn(FieldIndex = 2, CanBeNull = false)]
         public DateTime InvalidationDate { get; set; }
     }
 }

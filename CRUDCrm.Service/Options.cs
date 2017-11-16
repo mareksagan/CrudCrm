@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace AcmarkCrm.Service
+namespace CRUDCrm.Service
 {
     class Options
     {

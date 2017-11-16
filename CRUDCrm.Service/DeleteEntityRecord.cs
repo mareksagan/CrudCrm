@@ -3,7 +3,7 @@ using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 
-namespace AcmarkCrm.Service
+namespace CRUDCrm.Service
 {
     partial class Program
     {
