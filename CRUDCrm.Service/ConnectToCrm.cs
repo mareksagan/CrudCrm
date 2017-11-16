@@ -4,7 +4,7 @@ using System.ServiceModel.Description;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 
-namespace CRUDCrm.Service
+namespace CrudCrm.Service
 {
     partial class Program
     {

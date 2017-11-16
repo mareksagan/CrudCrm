@@ -1,8 +1,7 @@
 ﻿using System;
-using CRUDCrm.Service;
 using LINQtoCSV;
 
-namespace AcmarkCrm
+namespace CrudCrm.Service
 {
     /// <summary>
     /// 

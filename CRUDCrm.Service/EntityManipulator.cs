@@ -1,4 +1,4 @@
-﻿namespace CRUDCrm.Service
+﻿namespace CrudCrm.Service
 {
     sealed class EntityManipulator
     {

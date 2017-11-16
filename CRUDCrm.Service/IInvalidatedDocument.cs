@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CRUDCrm.Service
+namespace CrudCrm.Service
 {
     /// <summary>
     /// 

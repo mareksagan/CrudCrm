@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Reflection;
 using CommandLine;
 using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Messages;
-using Microsoft.Xrm.Client;
 
-namespace CRUDCrm.Service
+namespace CrudCrm.Service
 {
     partial class Program
     {
@@ -30,7 +27,6 @@ namespace CRUDCrm.Service
             {
                 Console.WriteLine("Press [U] to update the CRM entity records");
                 Console.ReadKey();
-
             }
             else if (options.Credits)
             {

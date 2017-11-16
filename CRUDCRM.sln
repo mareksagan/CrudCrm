@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRUDCrm.Service", "CRUDCrm.Service\CRUDCrm.Service.csproj", "{1B38AA69-27B2-44B4-B1DF-3E1CCD90971D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrudCrm.Service", "CrudCrm.Service\CrudCrm.Service.csproj", "{1B38AA69-27B2-44B4-B1DF-3E1CCD90971D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
-using AcmarkCrm;
 using LINQtoCSV;
 
-namespace CRUDCrm.Service
+namespace CrudCrm.Service
 {
     sealed class CsvReader
     {

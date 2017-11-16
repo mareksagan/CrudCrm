@@ -1,7 +1,7 @@
 ﻿using System;
 using LINQtoCSV;
 
-namespace CRUDCrm.Service
+namespace CrudCrm.Service
 {
     /// <summary>
     /// 
