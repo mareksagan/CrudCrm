@@ -87,10 +87,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddEntityRecord.cs" />
-    <Compile Include="DeleteEntityRecord.cs" />
-    <Compile Include="ConnectToCrm.cs" />
+    <Compile Include="ArchiveDownloader.cs" />
+    <Compile Include="Credits.cs" />
+    <Compile Include="CrmConnector.cs" />
+    <Compile Include="DocumentType.cs" />
     <Compile Include="EntityManipulator.cs" />
+    <Compile Include="UrlList.cs" />
     <Compile Include="IInvalidatedDocument.cs" />
     <Compile Include="InvalidatedDocument.cs" />
     <Compile Include="InvalidatedDocumentWithSeries.cs" />
