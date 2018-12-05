@@ -19,6 +19,13 @@ namespace CrudCrm.Service
 
         public string InputFileExtension { get; set; }
 
+        private static readonly CsvReader Instance = new CsvReader();
+
+        public static CsvReader GetCsvReader()
+        {
+            return Instance;
+        }
+
         private CsvReader()
         {
             Path = AppDomain.CurrentDomain.BaseDirectory + @"csv\";

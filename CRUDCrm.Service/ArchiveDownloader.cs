@@ -21,6 +21,14 @@ namespace CrudCrm.Service
 
         static readonly string DownloadedFile = "downloaded_file";
 
+        private static readonly ArchiveDownloader Instance = new ArchiveDownloader();
+
+        public static ArchiveDownloader GetArchiveDownloader()
+        {
+            return Instance;
+        }
+
+
         private ArchiveDownloader()
         {
             Downloader = new WebClient();

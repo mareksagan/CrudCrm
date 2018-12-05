@@ -26,7 +26,7 @@ namespace CrudCrm.Service
 
         private CrmConnector()
         {
-            SetUri();
+            if (Logging) Console.WriteLine("CREATED A NEW INSTANCE OF CRMCONNECTOR");
         }
 
         public static CrmConnector GetCrmConnector()
@@ -42,9 +42,17 @@ namespace CrudCrm.Service
 
         public void SetCredentials()
         {
-            Credentials.UserName.UserName = Login;
-            Credentials.UserName.Password = Password;
-            if (Logging) Console.WriteLine("CREDENTIALS HAVE BEEN SET");
+            if (!(string.IsNullOrEmpty(Login) || string.IsNullOrEmpty(Password)))
+            {
+                Credentials.UserName.UserName = Login;
+                Credentials.UserName.Password = Password;
+                if (Logging) Console.WriteLine("CREDENTIALS HAVE BEEN SET");
+            }
+            else
+            {
+                if (Logging) Console.WriteLine("INVALID CREDENTIALS");
+            }
+            
         }
 
         private void AllowCustomSslCertificates()

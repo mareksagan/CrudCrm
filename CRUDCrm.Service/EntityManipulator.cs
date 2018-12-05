@@ -39,7 +39,7 @@ namespace CrudCrm.Service
                 JobName = "Delete All",
                 ToRecipients = new Guid[] { },
                 CCRecipients = new Guid[] { },
-                RecurrencePattern = String.Empty,
+                RecurrencePattern = string.Empty,
                 QuerySet = new[]
                 {
                     new QueryExpression { EntityName = EntityName}
@@ -145,6 +145,61 @@ namespace CrudCrm.Service
             }
 
             Console.WriteLine($"RECORD CREATED - Guid: {id}");
+        }
+
+        public void DeleteEntityRecords()
+        {
+            CsvReader csvrdr = new CsvReader();
+
+            csvrdr.DownloadBaseCsvFiles();
+
+            var collection = csvrdr.ReadCsv("op_vse");
+
+            var requestWithResults = new ExecuteMultipleRequest()
+            {
+                // Assign settings that define execution behavior: continue on error, return responses. 
+                Settings = new ExecuteMultipleSettings()
+                {
+                    ContinueOnError = false,
+                    ReturnResponses = true
+                },
+                // Create an empty organization request collection.
+                Requests = new OrganizationRequestCollection()
+            };
+
+            EntityCollection entityCollection = new EntityCollection()
+            {
+                EntityName = "acm_listinvaliddocument"
+            };
+
+            foreach (var item in collection)
+            {
+                if (!string.IsNullOrEmpty(item.DocumentId))
+                {
+                    Entity tempEntity = new Entity("acm_listinvaliddocument")
+                    {
+                        Attributes =
+                        {
+                            ["acm_documentnumber"] = item.DocumentId,
+                            ["acm_documenttype"] = DocumentType.WithoutSeries,
+                            ["acm_invalidationdate"] = item.InvalidationDate
+                        }
+                    };
+
+                    entityCollection.Entities.Add(tempEntity);
+                }
+
+                Console.WriteLine(item.DocumentId);
+            }
+
+            foreach (var entity in entityCollection.Entities)
+            {
+                //RetrieveMultipleRequest and then delete
+                DeleteRequest deleteRequest = new DeleteRequest { new EntityReference() };
+                requestWithResults.Requests.Add(deleteRequest);
+            }
+
+            CrmService.Execute(requestWithResults);
         }
     }
 }
