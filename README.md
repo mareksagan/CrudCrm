@@ -7,6 +7,10 @@ Microsoft Dynamics CRM data uploading service
 The database consists of several files that need to be imported to a CRM entity.
 The update procedure may run regularly every day at night.
 
+## Installation
+
+Run `msbuild ./CRUDCrm.Service/CRUDCrm.Service.csproj` and execute the output binary
+
 ## Used approach
 
 Late-bound classes
